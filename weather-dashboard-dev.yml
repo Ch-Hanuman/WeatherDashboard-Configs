@@ -1,7 +1,4 @@
-spring:
-  application:
-    name: weather-service
-    
+spring:    
   config:
     activate:
       on-profile: dev
