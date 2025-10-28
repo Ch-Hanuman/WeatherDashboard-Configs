@@ -1,6 +1,10 @@
 spring:
   application:
     name: weather-service
+    
+  config:
+    activate:
+      on-profile: prod
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
