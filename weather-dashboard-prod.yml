@@ -2,6 +2,19 @@ server:
   port: 8080
 
 spring:
+  config:
+    activate:
+      on-profile: prod
+
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER}
+      fail-fast: true
+      retry:
+        max-attempts: 6
+        multiplier: 1.5
+        initial-interval: 2000
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${DB_URL}
@@ -15,9 +28,9 @@ spring:
       max-lifetime: 1200000
 
   jpa:
+    show-sql: false
     hibernate:
       ddl-auto: none
-    show-sql: false
     properties:
       hibernate:
         format_sql: true
@@ -30,6 +43,10 @@ management:
   endpoint:
     health:
       show-details: when_authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
   info:
     env:
       enabled: true
@@ -41,4 +58,3 @@ weather:
     - Delhi
     - Mumbai
     - Chennai
-
